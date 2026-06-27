@@ -1,0 +1,47 @@
+import type { FormulaChoice, MatchItem } from '@/components/EquationMatch';
+
+export const formulas: FormulaChoice[] = [
+  { id: 'A', tex: 'V=\\dfrac{kq}{r}' },
+  { id: 'B', tex: '\\vec E=-\\vec\\nabla V' },
+  { id: 'C', tex: 'V_B-V_A=-\\int_A^B \\vec E\\cdot d\\vec\\ell' },
+  { id: 'D', tex: 'C=\\dfrac{\\varepsilon_0 A}{d}' },
+  { id: 'E', tex: 'C=\\dfrac{2\\pi\\varepsilon_0 \\ell}{\\ln(b/a)}' },
+  { id: 'F', tex: 'C=4\\pi\\varepsilon_0\\dfrac{ab}{b-a}' },
+  { id: 'G', tex: '\\dfrac{1}{C_{eq}}=\\sum\\dfrac{1}{C_i}' },
+  { id: 'H', tex: 'C_{eq}=\\sum C_i' },
+  { id: 'I', tex: 'U=\\tfrac12 CV^2' },
+  { id: 'J', tex: 'u_E=\\tfrac12 \\varepsilon_0 E^2' },
+  { id: 'K', tex: 'C=\\kappa C_0' },
+  // intentional distractors:
+  { id: 'X', tex: 'V=\\dfrac{kq}{r^2}', isDistractor: true },
+  { id: 'Y', tex: 'C=\\dfrac{\\varepsilon_0 d}{A}', isDistractor: true },
+];
+
+export const items: MatchItem[] = [
+  {
+    id: 'EM-01',
+    concept: 'Potential of a point charge (reference at infinity)',
+    correctFormulaId: 'A',
+    explanation: 'Integrating \\(-\\int_\\infty^r kq/r\'^2\\,dr\'\\) gives \\(V=kq/r\\). Distractor X uses \\(r^2\\) — that\'s the field, not the potential.',
+  },
+  { id: 'EM-02', concept: 'Field as the gradient of the potential', correctFormulaId: 'B',
+    explanation: 'Negative sign because positive charges fall in the direction of decreasing V.' },
+  { id: 'EM-03', concept: 'Definition of potential difference from the field', correctFormulaId: 'C',
+    explanation: 'Line integral of \\(\\vec E\\) gives \\(-\\Delta V\\); reversing the order is the most common sign error.' },
+  { id: 'EM-04', concept: 'Capacitance of a parallel-plate capacitor (vacuum)', correctFormulaId: 'D',
+    explanation: 'Distractor Y has A and d swapped — dimensionally wrong (a capacitance must grow with plate area).' },
+  { id: 'EM-05', concept: 'Capacitance of a cylindrical capacitor', correctFormulaId: 'E',
+    explanation: 'Use Gauss\'s law per unit length, then integrate from a to b.' },
+  { id: 'EM-06', concept: 'Capacitance of a spherical capacitor (radii a, b)', correctFormulaId: 'F',
+    explanation: 'From \\(V=kQ(1/a-1/b)\\) and \\(C=Q/V\\).' },
+  { id: 'EM-07', concept: 'Equivalent capacitance — series combination', correctFormulaId: 'G',
+    explanation: 'Q is the same on each series capacitor; voltages add — so reciprocals add (opposite of resistors).' },
+  { id: 'EM-08', concept: 'Equivalent capacitance — parallel combination', correctFormulaId: 'H',
+    explanation: 'V is the same across each parallel capacitor; charges add.' },
+  { id: 'EM-09', concept: 'Energy stored in a capacitor', correctFormulaId: 'I',
+    explanation: 'Also \\(U=Q^2/(2C)=\\tfrac12 QV\\). Use whichever pair (Q, V) is held constant.' },
+  { id: 'EM-10', concept: 'Energy density of the electric field (vacuum)', correctFormulaId: 'J',
+    explanation: 'Integrate over the volume of the field region to recover total stored energy.' },
+  { id: 'EM-11', concept: 'Capacitance with a dielectric of constant κ', correctFormulaId: 'K',
+    explanation: 'Inserting a dielectric multiplies C by κ. With battery connected, Q rises by κ; disconnected, V drops by κ.' },
+];

@@ -1,0 +1,32 @@
+{
+  "name": "phy2049-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "verify": "node scripts/verify.mjs",
+    "verify-mixed": "py scripts/verify_mixed_review.py || python scripts/verify_mixed_review.py",
+    "rederive": "py scripts/rederive.py || python scripts/rederive.py",
+    "audit": "py scripts/audit.py || python scripts/audit.py"
+  },
+  "dependencies": {
+    "better-react-mathjax": "^2.3.0",
+    "clsx": "^2.1.1",
+    "d3-contour": "^4.0.2",
+    "next": "14.2.30",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/d3-contour": "^3.0.6",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.6",
+    "typescript": "^5.5.3"
+  }
+}
