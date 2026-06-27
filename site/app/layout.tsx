@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import Script from 'next/script';
 import { MathProvider } from '@/components/Math';
 import { Nav } from '@/components/Nav';
 import { VERSION, LAST_UPDATED } from '@/lib/version';
@@ -33,6 +34,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </span>
           </footer>
         </MathProvider>
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token":"a810643bda0d4df9a1a615c755265097"}'
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
