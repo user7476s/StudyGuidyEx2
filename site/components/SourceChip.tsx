@@ -5,6 +5,7 @@ const labels: Record<Source, string> = {
   iclicker: 'iclicker',
   textbook: 'textbook',
   generated: 'generated',
+  homework: 'homework',
 };
 
 export function SourceChip({ source }: { source: Source }) {
@@ -14,6 +15,7 @@ export function SourceChip({ source }: { source: Source }) {
         'chip-iclicker': source === 'iclicker',
         'chip-textbook': source === 'textbook',
         'chip-generated': source === 'generated',
+        'chip-homework': source === 'homework',
       })}
       title={`Source: ${labels[source]}`}
     >

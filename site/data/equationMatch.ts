@@ -12,9 +12,14 @@ export const formulas: FormulaChoice[] = [
   { id: 'I', tex: 'U=\\tfrac12 CV^2' },
   { id: 'J', tex: 'u_E=\\tfrac12 \\varepsilon_0 E^2' },
   { id: 'K', tex: 'C=\\kappa C_0' },
+  { id: 'L', tex: 'I=\\dfrac{dQ}{dt}' },
+  { id: 'M', tex: 'I=n\\,q\\,A\\,v_d' },
+  { id: 'N', tex: 'R=\\dfrac{\\rho L}{A}' },
+  { id: 'O', tex: 'V=I\\,R' },
   // intentional distractors:
   { id: 'X', tex: 'V=\\dfrac{kq}{r^2}', isDistractor: true },
   { id: 'Y', tex: 'C=\\dfrac{\\varepsilon_0 d}{A}', isDistractor: true },
+  { id: 'Z', tex: 'R=\\dfrac{\\rho A}{L}', isDistractor: true },
 ];
 
 export const items: MatchItem[] = [
@@ -44,4 +49,12 @@ export const items: MatchItem[] = [
     explanation: 'Integrate over the volume of the field region to recover total stored energy.' },
   { id: 'EM-11', concept: 'Capacitance with a dielectric of constant κ', correctFormulaId: 'K',
     explanation: 'Inserting a dielectric multiplies C by κ. With battery connected, Q rises by κ; disconnected, V drops by κ.' },
+  { id: 'EM-12', concept: 'Electric current as the rate at which charge crosses a surface', correctFormulaId: 'L',
+    explanation: 'Steady-current shortcut \\(I=Q/\\Delta t\\) is fine; when \\(I\\) varies in time, only the integral \\(Q=\\int I\\,dt\\) is correct.' },
+  { id: 'EM-13', concept: 'Microscopic expression for current in a wire (carriers, density, drift)', correctFormulaId: 'M',
+    explanation: 'Slab of length \\(v_d\\,dt\\) past a cross-section holds \\(n\\,A\\,v_d\\,dt\\) carriers each of charge \\(q\\).' },
+  { id: 'EM-14', concept: 'Resistance of a uniform piece of wire (material × shape)', correctFormulaId: 'N',
+    explanation: 'Doubling \\(L\\) doubles R; doubling the diameter <i>quarters</i> R. Distractor Z has \\(L\\) and \\(A\\) swapped — dimensionally wrong.' },
+  { id: 'EM-15', concept: "Ohm's law (macroscopic) — relates V, I, R for an ohmic device", correctFormulaId: 'O',
+    explanation: 'Empirical, not fundamental. Holds for metals/resistors at modest currents; fails for diodes, lamp filaments at high T, etc.' },
 ];

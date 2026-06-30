@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import clsx from 'clsx';
-import { MathDynamic, MathStatic } from './Math';
+import { MathDynamic } from './Math';
 import { useScore } from './Scorebar';
 
 export interface MatchItem {
@@ -46,7 +46,7 @@ export function EquationMatchBlock({
       <div className="grid md:grid-cols-2 gap-4">
         <div>
           <h3 className="font-semibold mb-2 text-sm">Concepts</h3>
-          <MathStatic>
+          <MathDynamic>
             <ul className="space-y-2">
               {items.map((it) => {
                 const picked = picks[it.id];
@@ -90,12 +90,12 @@ export function EquationMatchBlock({
                 );
               })}
             </ul>
-          </MathStatic>
+          </MathDynamic>
         </div>
 
         <div>
           <h3 className="font-semibold mb-2 text-sm">Formula bank</h3>
-          <MathStatic>
+          <MathDynamic>
             <ul className="space-y-2">
               {formulas.map((f) => (
                 <li key={f.id} className="flex items-center gap-3 border border-slate-200 rounded p-2 bg-white">
@@ -104,7 +104,7 @@ export function EquationMatchBlock({
                 </li>
               ))}
             </ul>
-          </MathStatic>
+          </MathDynamic>
         </div>
       </div>
     </section>

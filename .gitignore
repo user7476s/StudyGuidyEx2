@@ -10,3 +10,6 @@ site/out/
 
 # Temp
 tmp/
+
+# Personal source material (homework/iclicker screenshots ingested into exam data)
+iclickerandhomeworkstuff/

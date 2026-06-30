@@ -160,14 +160,14 @@ function readObject(s, i) {
 console.log('Verifying exam1...');
 const exam1Src = readFile(path.join(root, 'data', 'exam1.ts'));
 const exam1 = parseQuestions(exam1Src);
-if (exam1.length === 100) ok('exam1 length = 100');
-else fail(`exam1 length = ${exam1.length}, expected 100`);
+if (exam1.length === 116) ok('exam1 length = 116');
+else fail(`exam1 length = ${exam1.length}, expected 116`);
 
 console.log('Verifying exam2...');
 const exam2Src = readFile(path.join(root, 'data', 'exam2.ts'));
 const exam2 = parseQuestions(exam2Src);
-if (exam2.length === 100) ok('exam2 length = 100');
-else fail(`exam2 length = ${exam2.length}, expected 100`);
+if (exam2.length === 114) ok('exam2 length = 114');
+else fail(`exam2 length = ${exam2.length}, expected 114`);
 
 const all = [...exam1, ...exam2];
 const ids = new Set();
@@ -176,9 +176,10 @@ for (const q of all) {
   if (ids.has(q.id)) fail(`duplicate id: ${q.id}`);
   ids.add(q.id);
 }
-if (ids.size === 200) ok('200 unique ids across both exams');
+if (ids.size === 230) ok('230 unique ids across both exams');
+else fail(`unique id count ${ids.size}, expected 230`);
 
-const validSources = new Set(['iclicker', 'textbook', 'generated']);
+const validSources = new Set(['iclicker', 'textbook', 'generated', 'homework']);
 for (const q of all) {
   if (!q.src || !validSources.has(q.src)) fail(`${q.id}: invalid source "${q.src}"`);
   if (!q.hint || (typeof q.hint === 'string' && q.hint.trim().length === 0)) fail(`${q.id}: missing/empty hint`);

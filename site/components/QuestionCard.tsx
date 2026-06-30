@@ -4,7 +4,7 @@ import { memo, useState } from 'react';
 import clsx from 'clsx';
 import type { Question } from '@/lib/types';
 import { SourceChip } from './SourceChip';
-import { MathDynamic, MathStatic } from './Math';
+import { MathDynamic } from './Math';
 import { useScore } from './Scorebar';
 
 interface InnerProps {
@@ -67,9 +67,9 @@ const QuestionCardInner = memo(
           </div>
         )}
 
-        <MathStatic>
+        <MathDynamic>
           <div className="prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: q.stem }} />
-        </MathStatic>
+        </MathDynamic>
 
         {q.figure && (
           <figure className="my-3">
@@ -79,7 +79,7 @@ const QuestionCardInner = memo(
         )}
 
         <div className="my-3">
-          <MathStatic>
+          <MathDynamic>
             <ol className="list-none p-0">
               {q.options.map((opt, i) => {
                 const showResult = isLocked;
@@ -106,7 +106,7 @@ const QuestionCardInner = memo(
                 );
               })}
             </ol>
-          </MathStatic>
+          </MathDynamic>
         </div>
 
         <div className="flex gap-2 flex-wrap items-center no-print">

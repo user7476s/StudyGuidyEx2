@@ -9,6 +9,7 @@ export default function StudyGuideLayout({ children }: { children: ReactNode }) 
         <Link href="/study-guide/" className="text-blue-700 hover:underline">Overview &amp; formulas</Link>
         <Link href="/study-guide/potential/" className="text-blue-700 hover:underline">Ch. 7 — Potential</Link>
         <Link href="/study-guide/capacitance/" className="text-blue-700 hover:underline">Ch. 8 — Capacitance</Link>
+        <Link href="/study-guide/current/" className="text-blue-700 hover:underline">Ch. 9 — Current</Link>
         <Link href="/study-guide/mixed-review/" className="text-blue-700 hover:underline">Mixed review</Link>
       </nav>
       {children}

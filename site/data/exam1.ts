@@ -1,10 +1,13 @@
 import type { Question } from '@/lib/types';
 import { q } from './helpers';
 
-// Practice Exam 1 — §7.1–§8.5
-// 100 multiple-choice items: 9 iClicker + 62 textbook (from OpenStax UPhys Vol 2,
-// CC-BY 4.0) + 29 retained generated fill items. Question order and answer-option
-// order are randomized on the client (see lib/shuffle.ts).
+// Practice Exam 1 — §7.1–§9.4
+// 116 multiple-choice items: original 100 (9 iClicker + 62 textbook from OpenStax
+// UPhys Vol 2, CC-BY 4.0 + 29 generated fill) plus 9 items ingested from the
+// student's own iClicker/WebAssign homework (tagged `iclicker` or `homework`)
+// plus 7 additional Ch. 9 practice items (generated).
+// Question order and answer-option order are randomized on the client (see
+// lib/shuffle.ts).
 
 export const exam1: Question[] = [
   // === iClicker items (9) ===
@@ -1513,6 +1516,314 @@ export const exam1: Question[] = [
       'Confuses with parallel: bigger C wins when V is the same. Series shares Q, so smaller C wins.',
       'Equal would require equal C — but \\(U=Q^2/(2C)\\) depends explicitly on C.',
       'Capacitor energies don\'t depend on wire material (assuming ideal connections).',
+    ],
+  }),
+
+  // === Ingested from student's iClicker / WebAssign (9) — see iclickerandhomeworkstuff/ ===
+  q({
+    id: 'E1-101', src: 'iclicker', topic: '7.4 E from grad V',
+    stem: 'In a region of space, the electric potential decreases uniformly from east to west and does not vary in any other direction. The electric field in this region:',
+    options: [
+      'Points east.',
+      'Points west.',
+      'Is zero (uniform-decrease implies no field).',
+      'Cannot be determined without a test charge.',
+    ],
+    correct: 1,
+    hint: '\\(\\vec E = -\\nabla V\\). The field points in the direction of *steepest decrease* of \\(V\\).',
+    exp: '\\(\\vec E\\) points "downhill" in V. V drops east→west, so \\(\\vec E\\) points west. (B).',
+    rationales: [
+      'Sign error: \\(\\vec E\\) points along \\(-\\nabla V\\) — toward decreasing V, not increasing V.',
+      '',
+      'A uniform *gradient* still gives a nonzero (uniform) field; only a spatially constant V gives \\(\\vec E=0\\).',
+      'V is set by the source charges; no test charge is needed.',
+    ],
+  }),
+  q({
+    id: 'E1-102', src: 'homework', topic: '7.2 ΔU between two point charges',
+    stem: 'A charge \\(q_1 = +0.90\\times10^{-5}\\) C sits at the origin. A second charge \\(q_2 = -0.80\\times10^{-5}\\) C is moved from \\((-0.79\\,\\text{m},\\,0)\\) to \\((0,\\,-0.55\\,\\text{m})\\). What is the change in electrostatic potential energy \\(\\Delta U\\) of the pair? (Use \\(k=8.99\\times10^9\\) N·m²/C².)',
+    options: [
+      '\\(-0.36\\) J',
+      '\\(+0.36\\) J',
+      '\\(-1.18\\) J',
+      '\\(+0.82\\) J',
+    ],
+    correct: 0,
+    hint: '\\(U = k q_1 q_2 / r\\). The initial and final separations are the distances from origin to each point. The pair has opposite signs, so \\(U<0\\).',
+    exp: '\\(r_i=0.79\\) m, \\(r_f=0.55\\) m. \\(U_i = (8.99\\times10^9)(9\\times10^{-6})(-8\\times10^{-6})/0.79 \\approx -0.819\\) J; \\(U_f \\approx -1.177\\) J; \\(\\Delta U = U_f - U_i \\approx -0.358\\) J. The opposite charges get closer, so the (negative) U becomes more negative. (A).',
+    rationales: [
+      '',
+      'Sign flip: opposite-sign charges getting *closer* means U gets more negative, not more positive.',
+      'Reported \\(U_f\\) alone, not \\(\\Delta U = U_f - U_i\\).',
+      'Reported \\(|U_i|\\) with a wrong sign — forgot to subtract initial from final.',
+    ],
+  }),
+  q({
+    id: 'E1-103', src: 'iclicker', topic: '7.4 Gradient operator',
+    stem: 'The gradient operator \\(\\vec\\nabla\\) in rectangular (Cartesian) coordinates is:',
+    options: [
+      '\\(\\hat x\\,\\partial/\\partial x + \\hat y\\,\\partial/\\partial y + \\hat z\\,\\partial/\\partial z\\)',
+      '\\(\\hat r\\,\\partial/\\partial r + \\hat\\theta\\,\\partial/\\partial\\theta + \\hat\\phi\\,\\partial/\\partial\\phi\\)',
+      '\\(\\hat x\\,x + \\hat y\\,y + \\hat z\\,z\\)',
+      '\\(\\partial^2/\\partial x^2 + \\partial^2/\\partial y^2 + \\partial^2/\\partial z^2\\)',
+    ],
+    correct: 0,
+    hint: 'Gradient is a *vector of first partial derivatives*, one per coordinate direction.',
+    exp: 'In Cartesian coordinates, \\(\\vec\\nabla = \\hat x\\,\\partial_x + \\hat y\\,\\partial_y + \\hat z\\,\\partial_z\\). The other options use the wrong coordinate system, a position vector, or the Laplacian (second derivatives). (A).',
+    rationales: [
+      '',
+      'That is a spherical-coordinate sketch (missing metric factors). The question asks for rectangular.',
+      'That is a position vector \\(\\vec r\\), not the gradient operator.',
+      'That is the Laplacian \\(\\nabla^2\\) (second derivatives), not the gradient (first derivatives).',
+    ],
+  }),
+  q({
+    id: 'E1-104', src: 'iclicker', topic: '7.2 Proton KE and field direction',
+    stem: 'A proton moves through a region of electric field \\(\\vec E\\). The proton\'s kinetic energy will *decrease* if it moves in which generic direction?',
+    options: [
+      'Along \\(\\vec E\\) (same direction as the field).',
+      'Opposite to \\(\\vec E\\) (toward higher potential).',
+      'Perpendicular to \\(\\vec E\\).',
+      'In any direction (KE is always conserved).',
+    ],
+    correct: 1,
+    hint: 'The electric force on a proton is \\(+e\\vec E\\), parallel to \\(\\vec E\\). When the force opposes motion, KE decreases.',
+    exp: 'Moving anti-parallel to \\(\\vec E\\) means the electric force does negative work on the proton — KE drops (and PE rises, since the proton moves toward higher V). (B).',
+    rationales: [
+      'Moving *along* \\(\\vec E\\) means the force does positive work — KE increases.',
+      '',
+      'Perpendicular motion in a uniform \\(\\vec E\\) does zero work, so KE is unchanged — that\'s not a decrease.',
+      'KE is not generally conserved; energy conservation lets KE drop when PE rises.',
+    ],
+  }),
+  q({
+    id: 'E1-105', src: 'iclicker', topic: '7.2 Common V/E claims (trick: none)',
+    stem: 'Consider the following four statements:  I. If \\(V=0\\) at a point, then \\(\\vec E=0\\) at that point.  II. If \\(\\vec E=0\\) at a point, then \\(V=0\\) at that point.  III. The potential \\(V\\) is highest where \\(|\\vec E|\\) is largest.  IV. \\(V\\) and \\(\\vec E\\) always point in the same direction.  Which is accurate?',
+    options: [
+      'Only I.',
+      'Only II.',
+      'I and III.',
+      'None of the above is accurate.',
+    ],
+    correct: 3,
+    hint: '\\(V\\) and \\(\\vec E\\) are related by a *derivative*, not by an algebraic equality. Also: \\(V\\) is a scalar.',
+    exp: '(I) and (II) fail by counterexample: midway between two equal positive charges \\(\\vec E=0\\) but \\(V\\ne0\\); on the perpendicular bisector of an equal-and-opposite pair \\(V=0\\) but \\(\\vec E\\ne 0\\). (III) fails because \\(|\\vec E|\\propto|dV/dx|\\), not to V itself (inside a uniformly charged sphere V is largest at center but E=0). (IV) fails because V is a scalar — no direction. (D).',
+    rationales: [
+      'Counterexample: between two equal-and-opposite charges, \\(V=0\\) on the bisector but \\(\\vec E\\ne 0\\) there.',
+      'Counterexample: at the midpoint of two equal positive charges, \\(\\vec E=0\\) but \\(V\\ne 0\\).',
+      'Magnitude of \\(\\vec E\\) depends on the *slope* of V, not the value of V.',
+      '',
+    ],
+  }),
+  q({
+    id: 'E1-106', src: 'iclicker', topic: '8.2 Plate separation and E-field strength',
+    stem: 'Two parallel-plate capacitors of equal plate area carry the same charge \\(\\pm Q\\) and have the same voltage \\(V\\) across them, but their plate separations differ: capacitor 1 has \\(d=1\\,\\text{mm}\\), capacitor 2 has \\(d=13.1\\,\\text{mm}\\). In which capacitor is the electric field \\(E\\) between the plates strongest?',
+    options: [
+      'Capacitor 1 (\\(d=1\\) mm).',
+      'Capacitor 2 (\\(d=13.1\\) mm).',
+      'Both are the same — same V means same E.',
+      'Need more information.',
+    ],
+    correct: 0,
+    hint: 'For uniform parallel-plate fields, \\(E = V/d\\). For a fixed \\(V\\), smaller \\(d\\) means a steeper voltage drop.',
+    exp: '\\(E = V/d\\). Same V, smaller d ⇒ larger E. With \\(d=1\\) mm vs. \\(13.1\\) mm, capacitor 1 has a field \\(\\sim 13\\times\\) stronger. (A).',
+    rationales: [
+      '',
+      'Sign of d-dependence backwards: \\(E\\propto 1/d\\) at fixed V — bigger d means *smaller* E.',
+      'Same V does NOT mean same E unless d is also equal.',
+      'V and d are both given; the answer is determined.',
+    ],
+  }),
+  q({
+    id: 'E1-107', src: 'homework', topic: '8.2 What determines C (parallel-plate)',
+    stem: 'Which physical property does NOT affect the capacitance \\(C\\) of a parallel-plate capacitor?',
+    options: [
+      'The plate area \\(A\\).',
+      'The plate separation \\(d\\).',
+      'The dielectric constant \\(\\kappa\\) of the insulator between the plates.',
+      'The voltage \\(\\Delta V\\) applied to the plates.',
+    ],
+    correct: 3,
+    hint: '\\(C = \\kappa\\varepsilon_0 A/d\\). What appears on the right-hand side?',
+    exp: 'Capacitance is purely a *geometric/material* property: \\(C = \\kappa\\varepsilon_0 A/d\\). Applying voltage just changes \\(Q = C\\Delta V\\) — it does not change \\(C\\). (D).',
+    rationales: [
+      'Plate area does enter: \\(C\\propto A\\).',
+      'Plate separation does enter: \\(C\\propto 1/d\\).',
+      'Dielectric does enter: \\(C\\propto \\kappa\\).',
+      '',
+    ],
+  }),
+  q({
+    id: 'E1-108', src: 'homework', topic: '8.2 The farad — definition',
+    stem: 'The farad (F) is equivalent to:',
+    options: [
+      'coulomb · volt',
+      'coulomb / volt',
+      'volt / coulomb',
+      'newton / coulomb',
+    ],
+    correct: 1,
+    hint: 'Capacitance is the proportionality in \\(Q = C\\,\\Delta V\\). Solve for the units of \\(C\\).',
+    exp: 'From \\(Q = C\\,\\Delta V\\), \\(C = Q/\\Delta V\\), so \\(1\\,\\text{F} = 1\\,\\text{C}/1\\,\\text{V}\\). (B).',
+    rationales: [
+      'That would have units of energy (joule), not capacitance.',
+      '',
+      'Reciprocal — that would be \\(1/\\text{F}\\) (sometimes called the daraf).',
+      'That is the unit of electric field, not capacitance.',
+    ],
+  }),
+  q({
+    id: 'E1-109', src: 'homework', topic: '8.3 Parallel capacitors across a battery',
+    stem: 'Two unequal capacitors \\(C_1\\ne C_2\\) are connected in *parallel* across an ideal battery of voltage \\(V_0\\). Which of the following must be true?',
+    options: [
+      'They have the same voltage across them but generally different charges.',
+      'They have the same charge but generally different voltages.',
+      'Both the charges and the voltages are equal.',
+      'The smaller capacitor stores more energy.',
+    ],
+    correct: 0,
+    hint: 'Parallel = same two nodes = same V. Then \\(Q_i = C_i V_0\\).',
+    exp: 'In parallel, both plates of one capacitor share the same pair of nodes with the other, so \\(V_1 = V_2 = V_0\\). The charges \\(Q_i = C_i V_0\\) differ because the \\(C_i\\) differ. (A).',
+    rationales: [
+      '',
+      'Confuses parallel with series. Series shares Q (same current path), parallel shares V.',
+      'Only true if \\(C_1 = C_2\\); the problem states they\'re unequal.',
+      'At fixed V, energy \\(U = \\tfrac12 C V^2\\) — *larger* C stores more, not smaller.',
+    ],
+  }),
+
+  // === Ch. 9 practice (generated) =========================================
+  q({
+    id: 'E1-110', src: 'generated', topic: '9.1 Steady current — Q = I·t',
+    stem: 'A small DC motor draws a steady current of \\(2.5\\,\\text{A}\\) for \\(8.0\\) minutes. How much charge passes through the motor in that time?',
+    options: [
+      '\\(1.2\\times 10^{3}\\,\\text{C}\\)',
+      '\\(2.0\\times 10^{1}\\,\\text{C}\\)',
+      '\\(20\\,\\text{C}\\)',
+      '\\(3.1\\times 10^{-3}\\,\\text{C}\\)',
+    ],
+    correct: 0,
+    hint: 'For steady current \\(I\\), \\(Q = I\\cdot t\\). Convert minutes to seconds first.',
+    exp: '\\(t = 8.0\\,\\text{min}\\times 60\\,\\text{s/min} = 480\\,\\text{s}\\); \\(Q = (2.5)(480) = 1200\\,\\text{C}\\). (A).',
+    rationales: [
+      '',
+      'Forgot to convert minutes → seconds (used \\(2.5\\cdot 8 = 20\\)).',
+      'Same minutes/seconds slip as the previous option.',
+      'Reciprocal — computed \\(I/t\\) instead of \\(I\\cdot t\\).',
+    ],
+  }),
+  q({
+    id: 'E1-111', src: 'generated', topic: '9.1 Total charge from time-varying I(t)',
+    stem: 'A current pulse has the form \\(I(t) = (4.0\\,\\text{A})\\cdot(t/\\text{s})\\) for \\(0\\le t\\le 3.0\\,\\text{s}\\) (and zero outside). What total charge has flowed by \\(t = 3.0\\,\\text{s}\\)?',
+    options: [
+      '\\(18\\,\\text{C}\\)',
+      '\\(12\\,\\text{C}\\)',
+      '\\(36\\,\\text{C}\\)',
+      '\\(9.0\\,\\text{C}\\)',
+    ],
+    correct: 0,
+    hint: 'When \\(I\\) varies, \\(Q = \\int_0^{t} I\\,dt\\), not \\(I\\cdot t\\).',
+    exp: '\\(Q = \\int_0^{3} 4t\\,dt = 2t^2\\big|_0^3 = 18\\,\\text{C}\\). Equivalently the area under the I–t triangle is \\(\\tfrac12(3)(12) = 18\\). (A).',
+    rationales: [
+      '',
+      'Used \\(I(t=3)\\cdot t = 12\\cdot 3 / 3\\) — treated the peak \\(I\\) as the average.',
+      'Doubled the integral (used \\(4t^2\\) as the antiderivative instead of \\(2t^2\\)).',
+      'Used the average \\(I = 6\\,\\text{A}\\) but with \\(t = 1.5\\,\\text{s}\\) (half the interval).',
+    ],
+  }),
+  q({
+    id: 'E1-112', src: 'generated', topic: '9.2 Drift speed in 14-gauge Cu wire',
+    stem: 'A 14-gauge copper wire (diameter \\(d = 1.628\\,\\text{mm}\\), so \\(A \\approx 2.08\\times 10^{-6}\\,\\text{m}^2\\); carrier density \\(n = 8.34\\times 10^{28}\\,\\text{m}^{-3}\\)) carries \\(I = 10\\,\\text{A}\\). Find the electron drift speed \\(v_d\\).',
+    options: [
+      '\\(\\approx 3.6\\times 10^{-4}\\,\\text{m/s}\\) (about 0.36 mm/s)',
+      '\\(\\approx 3.6\\times 10^{4}\\,\\text{m/s}\\)',
+      '\\(\\approx 3.0\\times 10^{8}\\,\\text{m/s}\\) (the speed of light)',
+      '\\(\\approx 1.0\\,\\text{m/s}\\)',
+    ],
+    correct: 0,
+    hint: 'Use \\(v_d = I/(n\\,e\\,A)\\). All quantities in SI.',
+    exp: '\\(v_d = \\dfrac{10}{(8.34\\times 10^{28})(1.6\\times 10^{-19})(2.08\\times 10^{-6})} \\approx 3.6\\times 10^{-4}\\,\\text{m/s}\\) — i.e. ~0.36 mm/s. (A).',
+    rationales: [
+      '',
+      'Got the digits right but moved the decimal eight places — algebra error in the exponent.',
+      'That is the field-propagation (signal) speed, not the carrier drift speed.',
+      'Vastly too fast — would correspond to \\(n\\) being many orders smaller (semiconductor scale).',
+    ],
+  }),
+  q({
+    id: 'E1-113', src: 'generated', topic: '9.3 R = ρL/A for a copper wire',
+    stem: 'A length \\(L = 20\\,\\text{m}\\) of copper wire (\\(\\rho = 1.7\\times 10^{-8}\\,\\Omega\\cdot\\text{m}\\)) with diameter \\(d = 0.50\\,\\text{mm}\\) is used as a low-resistance lead. Find \\(R\\).',
+    options: [
+      '\\(\\approx 1.7\\,\\Omega\\)',
+      '\\(\\approx 6.9\\,\\Omega\\)',
+      '\\(\\approx 0.43\\,\\Omega\\)',
+      '\\(\\approx 0.022\\,\\Omega\\)',
+    ],
+    correct: 0,
+    hint: '\\(R = \\rho L/A\\) with \\(A = \\pi(d/2)^2\\).',
+    exp: '\\(A = \\pi(0.25\\times 10^{-3})^2 \\approx 1.96\\times 10^{-7}\\,\\text{m}^2\\); \\(R = (1.7\\times 10^{-8})(20)/(1.96\\times 10^{-7}) \\approx 1.73\\,\\Omega\\). (A).',
+    rationales: [
+      '',
+      'Used \\(A = \\pi d^2/2\\) (off by a factor of 4 in the area, giving the wrong \\(R\\) too low by 4).',
+      'Used the diameter as the radius (one-quarter the correct area, off by 4 the other way).',
+      'Used a 1.0 mm diameter wire — 4× the area gives 1/4 the resistance.',
+    ],
+  }),
+  q({
+    id: 'E1-114', src: 'generated', topic: '9.3 R-vs-diameter scaling',
+    stem: 'A piece of copper wire has resistance \\(R\\). A *second* piece of the same copper, with the same length but twice the diameter, has resistance:',
+    options: [
+      '\\(R/4\\)',
+      '\\(R/2\\)',
+      '\\(2R\\)',
+      '\\(4R\\)',
+    ],
+    correct: 0,
+    hint: '\\(R = \\rho L/A\\) and \\(A = \\pi(d/2)^2 \\propto d^2\\).',
+    exp: 'Doubling \\(d\\) quadruples \\(A\\), so \\(R = \\rho L/A\\) is divided by 4. (A).',
+    rationales: [
+      '',
+      'Treated \\(R\\propto 1/d\\) — but \\(R\\propto 1/d^2\\) through the area.',
+      'That is what doubling the *length* would do (\\(R\\propto L\\)).',
+      'Got the direction wrong *and* the power wrong.',
+    ],
+  }),
+  q({
+    id: 'E1-115', src: 'generated', topic: '9.3 Temperature dependence of R',
+    stem: 'A metallic resistor has \\(R_0 = 12.0\\,\\Omega\\) at \\(T_0 = 20\\,°\\text{C}\\). With temperature coefficient \\(\\alpha = 4.0\\times 10^{-3}\\,°\\text{C}^{-1}\\), what is its resistance at \\(T = 120\\,°\\text{C}\\)?',
+    options: [
+      '\\(\\approx 16.8\\,\\Omega\\)',
+      '\\(\\approx 11.5\\,\\Omega\\)',
+      '\\(\\approx 60.0\\,\\Omega\\)',
+      '\\(\\approx 12.5\\,\\Omega\\)',
+    ],
+    correct: 0,
+    hint: '\\(R(T) = R_0[1 + \\alpha\\,\\Delta T]\\); \\(\\Delta T = 100\\,°\\text{C}\\).',
+    exp: '\\(R = 12.0\\,[1 + (4.0\\times 10^{-3})(100)] = 12.0\\cdot 1.40 = 16.8\\,\\Omega\\). (A).',
+    rationales: [
+      '',
+      'Took \\(\\alpha\\) as negative (only certain materials such as carbon and semiconductors have \\(\\alpha < 0\\); pure metals have \\(\\alpha > 0\\)).',
+      'Used \\(T\\) directly (\\(R = R_0\\cdot \\alpha T\\)) instead of \\(\\Delta T\\) — and forgot the 1.',
+      'Used \\(\\Delta T = 5\\,°\\text{C}\\) (subtracted in the wrong direction / units).',
+    ],
+  }),
+  q({
+    id: 'E1-116', src: 'generated', topic: "9.4 Ohm's law — find I from V and R",
+    stem: 'An ohmic resistor of \\(R = 600\\,\\Omega\\) is connected across a \\(V = 24\\,\\text{V}\\) DC source. What is the current through the resistor?',
+    options: [
+      '\\(I = 40\\,\\text{mA}\\)',
+      '\\(I = 25\\,\\text{mA}\\)',
+      '\\(I = 14.4\\,\\text{kA}\\)',
+      '\\(I = 0.40\\,\\text{A}\\)',
+    ],
+    correct: 0,
+    hint: "Ohm's law: \\(I = V/R\\). Watch the prefix — \\(40\\times 10^{-3}\\,\\text{A} = 40\\,\\text{mA}\\).",
+    exp: '\\(I = V/R = 24/600 = 0.040\\,\\text{A} = 40\\,\\text{mA}\\). (A).',
+    rationales: [
+      '',
+      'Inverted to \\(R/V \\cdot 600\\) or made a digit slip — the correct ratio is \\(24/600\\), not \\(24\\cdot 600/2.4\\text{k}\\).',
+      'Computed \\(V\\cdot R\\) instead of \\(V/R\\) — gives kA, which is obviously wrong for 24 V across 600 Ω.',
+      'Off by a factor of 10 — correctly got 0.040 A but read it as 0.40 A.',
     ],
   }),
 ];

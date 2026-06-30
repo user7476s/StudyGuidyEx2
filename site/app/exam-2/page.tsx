@@ -14,9 +14,9 @@ export default function Exam2Page() {
     <ScoreProvider storageKey="phyexam2:exam-2:results">
       <div className="space-y-4">
         <header>
-          <h1 className="text-3xl font-bold">Practice Exam 2 — §7.1–8.5</h1>
+          <h1 className="text-3xl font-bold">Practice Exam 2 — §7.1–9.4</h1>
           <p className="text-slate-600 mt-1 text-sm">
-            100 multiple-choice items. Question order and answer choices are randomized on each
+            {exam2.length} multiple-choice items. Question order and answer choices are randomized on each
             attempt. Same engine: <b>Hint</b> → lock → grade → <b>Explanation</b>. <b>Reset</b>
             clears the scorebar and re-shuffles the exam. Your progress is saved to this browser
             — close the tab and come back to pick up where you left off.

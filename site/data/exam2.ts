@@ -1,10 +1,13 @@
 import type { Question } from '@/lib/types';
 import { q } from './helpers';
 
-// Practice Exam 2 — §7.1–§8.5
-// 100 multiple-choice items: 9 iClicker + 62 textbook (from OpenStax UPhys Vol 2,
-// CC-BY 4.0) + 29 retained generated fill items. Distinct from Exam 1 (no shared
-// textbook problems). Question order and answer-option order are randomized.
+// Practice Exam 2 — §7.1–§9.4
+// 114 multiple-choice items: original 100 (9 iClicker + 62 textbook from OpenStax
+// UPhys Vol 2, CC-BY 4.0 + 29 generated fill) plus 7 items ingested from the
+// student's own iClicker/WebAssign homework (tagged `iclicker` or `homework`)
+// plus 7 additional Ch. 9 practice items (generated).
+// Distinct from Exam 1 (no shared textbook problems). Question order and
+// answer-option order are randomized.
 
 export const exam2: Question[] = [
   // === iClicker items (9) ===
@@ -1498,6 +1501,276 @@ export const exam2: Question[] = [
       'Off by 2× — used \\(U=CV^2\\) without the ½.',
       'Off by 40× — used V = 100 V or doubled C as well.',
       'Off by 100× — kept C in μF (treating as F) or V in mV by mistake.',
+    ],
+  }),
+
+  // === Ingested from student's iClicker / WebAssign (7) — see iclickerandhomeworkstuff/ ===
+  q({
+    id: 'E2-101', src: 'homework', topic: '8.3 Equivalent capacitance — mixed network',
+    stem: 'Three parallel branches connect \\(+12\\,\\text{V}\\) (top) to \\(0\\,\\text{V}\\) (bottom): the left branch is \\(C_{10}=3.1\\,\\mu\\text{F}\\); the right branch is \\(C_{11}=9.9\\,\\mu\\text{F}\\); the middle branch is two capacitors in series, \\(C_{12}=9.5\\,\\mu\\text{F}\\) stacked above \\(C_{13}=7.2\\,\\mu\\text{F}\\). Find the equivalent capacitance \\(C_\\text{eq}\\) of the network (nearest \\(0.01\\,\\mu\\text{F}\\)).',
+    options: [
+      '\\(17.10\\,\\mu\\)F',
+      '\\(29.70\\,\\mu\\)F',
+      '\\(6.46\\,\\mu\\)F',
+      '\\(1.50\\,\\mu\\)F',
+    ],
+    correct: 0,
+    hint: 'First reduce the middle (series) branch: \\(1/C_\\text{mid} = 1/C_{12}+1/C_{13}\\). Then add the three parallel branches.',
+    exp: 'Series middle: \\(C_\\text{mid} = (9.5\\cdot 7.2)/(9.5+7.2) \\approx 4.10\\,\\mu\\)F. Parallel sum: \\(C_\\text{eq} = 3.1 + 9.9 + 4.10 \\approx 17.10\\,\\mu\\)F. (A).',
+    rationales: [
+      '',
+      'Added all four capacitances as if every branch were a single capacitor in parallel — forgot the series reduction of the middle branch.',
+      'Treated the *outer* pair (C₁₀, C₁₁) as series and the *inner* pair as series, then added in parallel — wrong topology.',
+      'Treated the entire network as four capacitors in series — adds the reciprocals of all four.',
+    ],
+  }),
+  q({
+    id: 'E2-102', src: 'homework', topic: '8.2 Charge on capacitor plates',
+    stem: 'A capacitor is described as "carrying a charge \\(Q\\)." What are the actual charges on its two plates?',
+    options: [
+      '\\(+Q\\) on each plate (total \\(2Q\\)).',
+      '\\(+Q\\) on one plate, \\(-Q\\) on the other (net zero).',
+      '\\(+Q/2\\) on each plate.',
+      '\\(+Q\\) on one plate, 0 on the other.',
+    ],
+    correct: 1,
+    hint: 'A capacitor is charge-neutral overall. "Carrying charge Q" is shorthand for *separated* charge of magnitude Q.',
+    exp: 'Charging a capacitor moves charge from one plate to the other; total charge stays zero. The shorthand "the capacitor has charge \\(Q\\)" means \\(+Q\\) on one plate and \\(-Q\\) on the other. (B).',
+    rationales: [
+      'Would require net charge \\(2Q\\) — the battery doesn\'t supply net charge, only separates it.',
+      '',
+      'Off by 2× and also misses the sign asymmetry between plates.',
+      'Without an equal-magnitude opposite charge on the other plate, the field between plates wouldn\'t be the standard uniform value, and no capacitor analysis would work.',
+    ],
+  }),
+  q({
+    id: 'E2-103', src: 'iclicker', topic: '8.2 Field lines in a parallel-plate cap',
+    stem: 'The electric field lines in the interior of an ideal parallel-plate capacitor (well away from the edges) are best described as:',
+    options: [
+      'Straight, parallel, equally spaced, and perpendicular to the plates.',
+      'Radial, emanating from each charge on the plates.',
+      'Curved, bowing outward through the gap.',
+      'Random, since charges are spread evenly on each plate.',
+    ],
+    correct: 0,
+    hint: 'Ideal = ignore fringing. Equal-magnitude opposite surface charges on infinite parallel sheets give a uniform field.',
+    exp: 'In the ideal (no-fringing) limit, the field inside is uniform: straight lines, equally spaced, running perpendicular from the \\(+\\) plate to the \\(-\\) plate. (A).',
+    rationales: [
+      '',
+      'Field lines from individual point charges are radial, but the *superposition* of two charged sheets gives uniform field, not radial.',
+      'Bowing happens only at the *edges* (fringing). In the ideal interior the field is uniform.',
+      'Uniform surface charge gives a uniform — not random — field.',
+    ],
+  }),
+  q({
+    id: 'E2-104', src: 'iclicker', topic: '9.1 Charge carriers in a metal',
+    stem: 'When a steady current flows through a metallic wire (say copper), the moving charges responsible for the current are:',
+    options: [
+      'Positive ions, drifting toward the negative terminal.',
+      'Free electrons, drifting toward the positive terminal.',
+      'Both ions and electrons in equal numbers.',
+      'Photons released by the battery.',
+    ],
+    correct: 1,
+    hint: 'In a solid metal, the lattice ions are essentially fixed. What is free to move?',
+    exp: 'In metals, the lattice of positive ions is fixed; only the conduction (free) electrons drift. They drift toward the higher-potential (\\(+\\)) terminal, which is *opposite* to the conventional-current direction. (B).',
+    rationales: [
+      'Ions are locked in the lattice — they don\'t carry current in solid metals (only in electrolytes/plasmas).',
+      '',
+      'Same lattice issue: ions don\'t move; electrons do.',
+      'Photons carry no net charge and aren\'t the charge carriers of an ordinary circuit.',
+    ],
+  }),
+  q({
+    id: 'E2-105', src: 'iclicker', topic: '9.1 Conventional current vs. electron flow',
+    stem: 'A diagram shows electrons drifting through a resistor toward the *right*. Which statement is correct about the conventional current \\(I\\) in this resistor?',
+    options: [
+      '\\(I\\) flows to the right, in the same direction as the electrons.',
+      '\\(I\\) flows to the left, opposite to the electron drift direction.',
+      '\\(I = 0\\), because the electrons cancel each other.',
+      'The direction of \\(I\\) depends on whether the resistor is ohmic.',
+    ],
+    correct: 1,
+    hint: 'Conventional current is defined as the direction *positive* charge would move.',
+    exp: 'Conventional current points in the direction positive carriers would drift — opposite to the actual electron motion. Electrons rightward → conventional current leftward. (B).',
+    rationales: [
+      'Same-direction definition is the common mistake; conventional current is, by convention, opposite to electron drift.',
+      '',
+      'Steady drift in one direction is the very *definition* of nonzero current — there is no cancellation.',
+      'Ohmic vs. non-ohmic affects the V-I curve, not the sign convention for \\(I\\).',
+    ],
+  }),
+  q({
+    id: 'E2-106', src: 'iclicker', topic: '9.1 "Conventional current" — definition',
+    stem: 'When we talk about "conventional current" flowing in a circuit, it refers to:',
+    options: [
+      'The direction in which positive charge would flow (or equivalently, opposite to electron drift in a metal).',
+      'The direction in which electrons drift inside metallic conductors.',
+      'The number of conduction electrons per cubic meter.',
+      'The thermal speed of free electrons, averaged over time.',
+    ],
+    correct: 0,
+    hint: 'It is a historical convention from Benjamin Franklin\'s era, predating the discovery of the electron.',
+    exp: 'Conventional current = direction of positive-charge flow. In metals, where the carriers are negative electrons, conventional current points opposite to electron drift. (A).',
+    rationales: [
+      '',
+      'That is *electron flow*, the opposite convention.',
+      'That is the carrier number density \\(n\\), not a current direction.',
+      'Thermal motion is random and averages to zero; current is the *drift* on top of thermal motion, and is measured in amps not m/s.',
+    ],
+  }),
+  q({
+    id: 'E2-107', src: 'homework', topic: '9.1 Current from charge and time',
+    stem: 'A clock battery wears out after moving \\(6{,}878\\,\\text{C}\\) of total charge through the clock at a steady current of \\(0.612\\,\\text{mA}\\). For how long did the clock run? (\\(1\\,\\text{A} = 1\\,\\text{C/s}\\).)',
+    options: [
+      '\\(\\approx 1.12\\times 10^{7}\\,\\text{s}\\)',
+      '\\(\\approx 1.12\\times 10^{4}\\,\\text{s}\\)',
+      '\\(\\approx 4.21\\,\\text{s}\\)',
+      '\\(\\approx 1.12\\times 10^{10}\\,\\text{s}\\)',
+    ],
+    correct: 0,
+    hint: '\\(I = Q/t \\Rightarrow t = Q/I\\). Convert \\(0.612\\,\\text{mA}\\) → \\(0.612\\times 10^{-3}\\,\\text{A}\\).',
+    exp: '\\(t = Q/I = 6878\\,\\text{C}/(0.612\\times 10^{-3}\\,\\text{A}) \\approx 1.124\\times 10^{7}\\,\\text{s}\\) (about 130 days). (A).',
+    rationales: [
+      '',
+      'Off by \\(10^{3}\\) — divided by 0.612 instead of \\(0.612\\times 10^{-3}\\) (kept mA instead of converting to A).',
+      'Treated 0.612 as 0.612 A *and* 6878 as 6878 mC — both unit errors compounding.',
+      'Off by \\(10^{3}\\) in the wrong direction — multiplied by the prefix instead of dividing.',
+    ],
+  }),
+
+  // === Ch. 9 practice (generated) — additional coverage ====================
+  q({
+    id: 'E2-108', src: 'generated', topic: '9.1 Integrate exponential I(t) for total Q',
+    stem: 'An RC-style discharge gives \\(I(t) = (6.0\\,\\text{A})\\,e^{-t/(2.0\\,\\text{s})}\\). Find the total charge that has flowed between \\(t = 0\\) and \\(t = 4.0\\,\\text{s}\\).',
+    options: [
+      '\\(\\approx 10.4\\,\\text{C}\\)',
+      '\\(\\approx 12.0\\,\\text{C}\\)',
+      '\\(\\approx 24.0\\,\\text{C}\\)',
+      '\\(\\approx 0.81\\,\\text{C}\\)',
+    ],
+    correct: 0,
+    hint: '\\(Q = \\int_0^{4} I_0\\,e^{-t/\\tau}\\,dt = I_0\\,\\tau\\,(1 - e^{-4/\\tau})\\).',
+    exp: 'With \\(I_0 = 6\\,\\text{A}\\), \\(\\tau = 2\\,\\text{s}\\): \\(Q = (6)(2)(1 - e^{-2}) = 12\\cdot 0.865 \\approx 10.4\\,\\text{C}\\). (A).',
+    rationales: [
+      '',
+      'Forgot the \\((1 - e^{-t/\\tau})\\) factor — that limit would be reached only as \\(t\\to\\infty\\).',
+      'Used \\(I_0\\cdot t = 6\\cdot 4 = 24\\) — but \\(I\\) is *not* constant; this overcounts because \\(I\\) decays.',
+      'Missed the \\(\\tau\\) factor when integrating, and additionally evaluated \\(I_0\\,e^{-4/2}\\) instead.',
+    ],
+  }),
+  q({
+    id: 'E2-109', src: 'generated', topic: '9.2 Drift speed in a semiconductor',
+    stem: 'A semiconductor sample has carrier density \\(n = 1.0\\times 10^{22}\\,\\text{m}^{-3}\\), cross-section \\(A = 5.0\\times 10^{-6}\\,\\text{m}^2\\), and carries \\(I = 20\\,\\text{mA}\\) with electron-like carriers (\\(q = e\\)). Find the drift speed.',
+    options: [
+      '\\(\\approx 2.5\\,\\text{m/s}\\)',
+      '\\(\\approx 2.5\\times 10^{-4}\\,\\text{m/s}\\)',
+      '\\(\\approx 4.0\\times 10^{-7}\\,\\text{m/s}\\)',
+      '\\(\\approx 1.6\\times 10^{-19}\\,\\text{m/s}\\)',
+    ],
+    correct: 0,
+    hint: '\\(v_d = I/(n\\,q\\,A)\\). Semiconductors have small \\(n\\) — expect *fast* drift compared with a metal.',
+    exp: '\\(v_d = 0.020/((10^{22})(1.6\\times 10^{-19})(5\\times 10^{-6})) = 0.020/(8\\times 10^{-3}) = 2.5\\,\\text{m/s}\\). Many orders of magnitude faster than in copper because \\(n\\) is so much smaller. (A).',
+    rationales: [
+      '',
+      'Used Cu-like \\(n\\sim 10^{28}\\) instead of the given semiconductor value.',
+      'Same metal-like \\(n\\) mistake plus a factor-of-1000 unit slip somewhere.',
+      'Treated the charge \\(e\\) as the answer (dimensional confusion).',
+    ],
+  }),
+  q({
+    id: 'E2-110', src: 'generated', topic: '9.3 Geometric/material scaling of R',
+    stem: 'A copper wire of length \\(L\\), area \\(A\\) has resistance \\(R\\). It is replaced by a *nichrome* wire of the same length and area. Nichrome has resistivity about 60× that of copper. What is the new resistance?',
+    options: [
+      '\\(\\approx 60\\,R\\)',
+      '\\(\\approx R/60\\)',
+      '\\(\\approx R\\) (resistance is set by geometry, not material)',
+      '\\(\\approx 3600\\,R\\) (resistivity is squared)',
+    ],
+    correct: 0,
+    hint: 'At the same \\(L\\) and \\(A\\), \\(R = \\rho L/A\\) is linear in \\(\\rho\\).',
+    exp: 'Same geometry, \\(\\rho\\) up by 60 → \\(R\\) up by 60. (A). This is why heating elements (toasters, hair dryers) use nichrome, not copper — the same wire shape dissipates ~60× more power for a given current.',
+    rationales: [
+      '',
+      'Reciprocal — confused resistivity with conductivity.',
+      'False — \\(R\\) depends on *both* shape (\\(L/A\\)) and material (\\(\\rho\\)).',
+      "\\(\\rho\\) appears once in \\(R = \\rho L/A\\), not squared.",
+    ],
+  }),
+  q({
+    id: 'E2-111', src: 'generated', topic: '9.3 Tungsten filament at high temperature',
+    stem: 'A tungsten lamp filament has \\(R_0 = 15.0\\,\\Omega\\) at \\(20\\,°\\text{C}\\). Tungsten has \\(\\alpha \\approx 4.5\\times 10^{-3}\\,°\\text{C}^{-1}\\). What is its resistance when its operating temperature reaches \\(2520\\,°\\text{C}\\)?',
+    options: [
+      '\\(\\approx 184\\,\\Omega\\)',
+      '\\(\\approx 15.7\\,\\Omega\\)',
+      '\\(\\approx 15.0\\,\\Omega\\) (resistance is intrinsic and does not change)',
+      '\\(\\approx 170\\,\\Omega\\)',
+    ],
+    correct: 0,
+    hint: '\\(R = R_0[1 + \\alpha\\,\\Delta T]\\) with \\(\\Delta T = 2500\\,°\\text{C}\\). Expect more than a 10× increase.',
+    exp: '\\(R = 15.0\\,[1 + (0.0045)(2500)] = 15.0\\cdot(1 + 11.25) = 15.0\\cdot 12.25 \\approx 184\\,\\Omega\\). The hot-filament resistance is ~12× the cold value — exactly why inrush current spikes blow bulbs at switch-on. (A).',
+    rationales: [
+      '',
+      'Used \\(\\Delta T = 10\\,°\\text{C}\\) instead of \\(2500\\,°\\text{C}\\) (decimal slip on the temperature).',
+      'Believed that resistance is purely intrinsic — but the formula explicitly depends on \\(T\\).',
+      'Forgot the leading \\(R_0\\) and computed \\(R_0\\cdot\\alpha\\cdot\\Delta T\\) without the "+1".',
+    ],
+  }),
+  q({
+    id: 'E2-112', src: 'generated', topic: "9.4 Ohmic vs non-ohmic: identify the non-ohmic device",
+    stem: 'Which of the following circuit elements is *not* well described by \\(V = IR\\) with a single constant \\(R\\)?',
+    options: [
+      'A silicon diode in forward bias',
+      'A carbon resistor at room temperature',
+      'A metallic conductor at modest current density',
+      'A 5% precision wirewound resistor',
+    ],
+    correct: 0,
+    hint: 'For an ohmic device the V–I curve is a straight line through the origin. Which of these has an exponential V–I curve instead?',
+    exp: "A diode's V–I curve is exponential above its threshold — for the same diode, the ratio \\(V/I\\) is wildly different at different operating points, so there is no single \\(R\\). The other three are textbook ohmic elements. (A).",
+    rationales: [
+      '',
+      'Carbon resistors are ohmic over a wide range; that is why they are sold as resistors.',
+      'Metals are the canonical ohmic material at modest currents.',
+      'Precision wirewound resistors are deliberately built to be very accurately ohmic.',
+    ],
+  }),
+  q({
+    id: 'E2-113', src: 'generated', topic: "9.4 Ohm's law — find I from V and R",
+    stem: 'A \\(9.0\\,\\text{V}\\) battery is connected across an ohmic device of resistance \\(R = 600\\,\\Omega\\). What is the steady-state current?',
+    options: [
+      '\\(15\\,\\text{mA}\\)',
+      '\\(150\\,\\text{mA}\\)',
+      '\\(5.4\\,\\text{kA}\\)',
+      '\\(67\\,\\text{A}\\)',
+    ],
+    correct: 0,
+    hint: '\\(I = V/R\\). \\(9/600\\) is small — expect milliamps, not amps.',
+    exp: '\\(I = 9.0/600 = 0.015\\,\\text{A} = 15\\,\\text{mA}\\). (A).',
+    rationales: [
+      '',
+      'Off by a factor of 10 — decimal slip going from 0.015 A to mA.',
+      'Computed \\(V\\cdot R\\) (kA scale is nonsensical for a 9 V battery).',
+      'Inverted — used \\(R/V\\) instead of \\(V/R\\).',
+    ],
+  }),
+  q({
+    id: 'E2-114', src: 'generated', topic: '9.3–9.4 Power dissipated and energy in time t',
+    stem: 'A resistor of \\(R = 80\\,\\Omega\\) carries a steady current \\(I = 0.50\\,\\text{A}\\) for 60 seconds. How much electrical energy is delivered to (dissipated by) the resistor in that interval?',
+    options: [
+      '\\(1.2\\times 10^{3}\\,\\text{J}\\) (= 1200 J)',
+      '\\(2.4\\times 10^{3}\\,\\text{J}\\) (= 2400 J)',
+      '\\(20\\,\\text{J}\\)',
+      '\\(40\\,\\text{J}\\)',
+    ],
+    correct: 0,
+    hint: '\\(P = I^2 R\\); energy = \\(P\\cdot t\\). Or equivalently \\(P = IV\\) with \\(V = IR\\).',
+    exp: '\\(P = I^2 R = (0.50)^2\\cdot 80 = 20\\,\\text{W}\\); \\(E = P\\,t = 20\\cdot 60 = 1200\\,\\text{J}\\). (A).',
+    rationales: [
+      '',
+      "Doubled — perhaps used \\(P = 2 I^2 R\\) or counted the time twice.",
+      'That is the *power* (W) — forgot to multiply by the 60-second interval.',
+      "Used \\(I\\cdot R\\cdot t\\) (which gives V·s, not J).",
     ],
   }),
 ];

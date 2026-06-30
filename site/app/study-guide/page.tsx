@@ -31,6 +31,17 @@ const ch8Rows: FormulaRow[] = [
   { name: 'With dielectric', tex: 'C=\\kappa \\varepsilon_0 \\dfrac{A}{d},\\;\\; u_E=\\tfrac12 \\kappa\\varepsilon_0 E^2' },
 ];
 
+const ch9Rows: FormulaRow[] = [
+  { name: 'Current (definition)', tex: 'I=\\dfrac{dQ}{dt}' },
+  { name: 'Microscopic current', tex: 'I=n\\,q\\,A\\,v_d' },
+  { name: 'Current density', tex: 'J=\\dfrac{I}{A}=n\\,q\\,v_d' },
+  { name: 'Microscopic Ohm', tex: '\\vec J=\\sigma\\vec E' },
+  { name: 'Conductivity / resistivity', tex: '\\rho=1/\\sigma' },
+  { name: 'Resistance of a wire', tex: 'R=\\dfrac{\\rho L}{A}' },
+  { name: 'Temperature dependence', tex: 'R(T)=R_0\\bigl[1+\\alpha\\,(T-T_0)\\bigr]' },
+  { name: "Ohm's law (macroscopic)", tex: 'V=I\\,R' },
+];
+
 const ch7Sections = [
   { id: '7.1', title: 'Electric Potential Energy' },
   { id: '7.2', title: 'Electric Potential and Potential Difference' },
@@ -48,11 +59,18 @@ const ch8Sections = [
   { id: '8.5', title: 'Molecular Model of a Dielectric' },
 ];
 
+const ch9Sections = [
+  { id: '9.1', title: 'Electrical Current' },
+  { id: '9.2', title: 'Model of Conduction in Metals' },
+  { id: '9.3', title: 'Resistivity and Resistance' },
+  { id: '9.4', title: "Ohm's Law" },
+];
+
 export default function StudyGuideIndex() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold">Study Guide — §7.1–8.5</h1>
+        <h1 className="text-3xl font-bold">Study Guide — §7.1–9.4</h1>
         <p className="text-slate-600 mt-1">
           Verbatim-faithful to OpenStax <i>University Physics Vol. 2</i>. Worked examples,
           per-section practice, tip / pitfall / exam-trap callouts, and five interactive demos.
@@ -96,6 +114,27 @@ export default function StudyGuideIndex() {
               ))}
             </ul>
           </div>
+
+          <div className="border border-slate-200 rounded p-4">
+            <h2 className="text-xl font-semibold">
+              <Link href="/study-guide/current/" className="text-blue-700 hover:underline">
+                Chapter 9 — Current and Resistance
+              </Link>
+            </h2>
+            <ul className="mt-2 space-y-1 text-sm">
+              {ch9Sections.map((s) => (
+                <li key={s.id}>
+                  <Link href={`/study-guide/current/#s${s.id.replace('.', '')}`} className="text-blue-700 hover:underline">
+                    §{s.id}
+                  </Link>{' — '}
+                  {s.title}
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs text-slate-500 mt-2">
+              §9.1–9.2 confirmed on-scope; §9.3–9.4 included for coverage safety.
+            </p>
+          </div>
         </div>
 
         <div className="mt-4 border border-slate-200 rounded p-4">
@@ -119,6 +158,7 @@ export default function StudyGuideIndex() {
           </p>
           <FormulaSheet title="Chapter 7 — Potential" rows={ch7Rows} />
           <FormulaSheet title="Chapter 8 — Capacitance" rows={ch8Rows} />
+          <FormulaSheet title="Chapter 9 — Current and Resistance" rows={ch9Rows} />
         </section>
       </MathStatic>
     </div>

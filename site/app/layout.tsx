@@ -7,8 +7,8 @@ import { Nav } from '@/components/Nav';
 import { VERSION, LAST_UPDATED } from '@/lib/version';
 
 export const metadata: Metadata = {
-  title: 'PHY 2049 — Electric Potential & Capacitance (Ch. 7–8)',
-  description: 'Personal AI-aided study aid for §7.1–8.5. Not for graded work.',
+  title: 'PHY 2049 — Potential, Capacitance, Current (Ch. 7–9)',
+  description: 'Personal AI-aided study aid for §7.1–9.4. Not for graded work.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

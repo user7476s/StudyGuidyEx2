@@ -4,11 +4,11 @@ export default function Home() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl font-bold">PHY 2049 — Electric Potential &amp; Capacitance</h1>
+        <h1 className="text-3xl font-bold">PHY 2049 — Potential, Capacitance, Current</h1>
         <p className="text-slate-600 mt-2">
-          OpenStax <i>University Physics</i> Vol. 2, §7.1–8.5. A self-study aid:
+          OpenStax <i>University Physics</i> Vol. 2, §7.1–9.4. A self-study aid:
           quick refresher on the prior chapters, a comprehensive guide for the new
-          material with interactive demos, and two distinct 100-question practice
+          material with interactive demos, and two distinct ~100-question practice
           exams. <b>Personal use only — not for graded work.</b>
         </p>
       </header>
@@ -22,19 +22,20 @@ export default function Home() {
           </div>
         </Link>
         <Link href="/study-guide/" className="border border-slate-200 rounded-lg p-4 bg-white hover:shadow">
-          <div className="font-semibold">Study Guide (§7.1–8.5)</div>
+          <div className="font-semibold">Study Guide (§7.1–9.4)</div>
           <div className="text-sm text-slate-600">
             Definitions, key formulas, worked examples, tips and pitfalls, interactive
-            demos for V(r), equipotentials, parallel-plate capacitors, and series/parallel networks.
+            demos for V(r), equipotentials, parallel-plate capacitors, series/parallel networks,
+            and now current &amp; resistance (Ch. 9).
           </div>
         </Link>
         <Link href="/exam-1/" className="border border-slate-200 rounded-lg p-4 bg-white hover:shadow">
           <div className="font-semibold">Practice Exam 1</div>
-          <div className="text-sm text-slate-600">100 multiple-choice questions, including every in-scope iClicker item from class.</div>
+          <div className="text-sm text-slate-600">116 multiple-choice questions across §7.1–9.4, including every in-scope iClicker and graded-homework item plus extra Ch. 9 practice.</div>
         </Link>
         <Link href="/exam-2/" className="border border-slate-200 rounded-lg p-4 bg-white hover:shadow">
           <div className="font-semibold">Practice Exam 2</div>
-          <div className="text-sm text-slate-600">100 entirely different multiple-choice questions covering the same chapter.</div>
+          <div className="text-sm text-slate-600">114 entirely different multiple-choice questions covering the same §7.1–9.4 material.</div>
         </Link>
       </section>
 

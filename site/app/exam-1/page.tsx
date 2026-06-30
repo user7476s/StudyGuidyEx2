@@ -16,9 +16,9 @@ export default function Exam1Page() {
     <ScoreProvider storageKey="phyexam2:exam-1:results">
       <div className="space-y-4">
         <header>
-          <h1 className="text-3xl font-bold">Practice Exam 1 — §7.1–8.5</h1>
+          <h1 className="text-3xl font-bold">Practice Exam 1 — §7.1–9.4</h1>
           <p className="text-slate-600 mt-1 text-sm">
-            100 multiple-choice items + an equation-matching block. Question order and answer
+            {exam1.length} multiple-choice items + an equation-matching block. Question order and answer
             choices are randomized on each attempt. Click <b>Hint</b> for a nudge, lock in your
             choice to grade, then read the full explanation. <b>Reset</b> clears the scorebar and
             re-shuffles the exam. Your progress is saved to this browser — close the tab and come
@@ -82,7 +82,7 @@ function Exam1Body() {
 
       <EquationMatchBlock
         key={state.nonce}
-        title="Equation-matching block (§7 + §8)"
+        title="Equation-matching block (§7 + §8 + §9)"
         items={matchItems}
         formulas={formulas}
       />

@@ -1,4 +1,4 @@
-export type Source = 'iclicker' | 'textbook' | 'generated';
+export type Source = 'iclicker' | 'textbook' | 'generated' | 'homework';
 
 export interface QuestionFigure {
   svg: string;

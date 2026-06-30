@@ -6,7 +6,7 @@ export function MixedReview() {
     <section id="mixed" className="mt-8">
       <h2 className="text-2xl font-bold">Mixed review — cross-section integrative problems</h2>
       <p>
-        These problems each span two or more of §7.1–8.5. They are the closest in spirit to a
+        These problems each span two or more of §7.1–9.4. They are the closest in spirit to a
         real exam question, where you have to identify which tool from which section applies and
         in what order.
       </p>
@@ -281,6 +281,53 @@ export function MixedReview() {
           makes the dielectric <i>store</i> energy more efficiently at fixed Q.
         </p>
       </Reveal>
+
+      <Reveal title="M13 — Capacitor discharge: stored energy becomes current (combines §8.3, §9.1)">
+        <p>
+          A \(C=10\,\mu\)F capacitor is charged to \(V_0=12\) V and then discharged through a
+          resistor \(R=2.0\) k\(\Omega\). (a) Initial charge \(Q_0\). (b) Initial current \(I_0\)
+          the instant the switch closes. (c) Time constant \(\tau\). (d) Charge remaining on the
+          capacitor at \(t=\tau\). (e) Total energy delivered to the resistor.
+        </p>
+        <p>
+          (a) \(Q_0 = CV_0 = (10\times10^&#123;-6&#125;)(12) = 1.20\times10^&#123;-4&#125;\) C = 120 \(\mu\)C.<br/>
+          (b) The full \(V_0\) appears across \(R\) at \(t=0^+\), so \(I_0 = V_0/R = 12/2000 = 6.0\) mA.<br/>
+          (c) \(\tau = RC = (2000)(10\times10^&#123;-6&#125;) = 0.020\) s = 20 ms.<br/>
+          (d) For an RC discharge, \(Q(t)=Q_0 e^&#123;-t/\tau&#125;\). At \(t=\tau\),
+          \(Q=Q_0/e \approx 0.368\cdot 120 \approx 44.1\,\mu\)C.<br/>
+          (e) All of the stored capacitor energy ends up dissipated:
+          \(U=\tfrac12 CV_0^2 = \tfrac12(10\times10^&#123;-6&#125;)(12)^2 = 7.2\times10^&#123;-4&#125;\) J = 0.72 mJ.
+          The §8.3 store becomes the §9.1 current that the resistor turns into heat.
+        </p>
+      </Reveal>
+
+      <Reveal title="M14 — Wire resistance, drift speed, and signal time (combines §9.2, §9.3, §9.4)">
+        <p>
+          A copper wire (\(n=8.34\times10^&#123;28&#125;\) m⁻³, \(\rho=1.7\times10^&#123;-8&#125;\) \(\Omega\)·m) has
+          \(L=10\) m and diameter \(d=1.0\) mm. A 1.50 V battery is connected across it.
+          (a) Find R. (b) Find I via Ohm&apos;s law. (c) Find the electron drift speed. (d) How
+          long would it take a single electron at this drift speed to traverse the wire? Comment
+          on the difference between this time and the time the light bulb at the far end turns on.
+        </p>
+        <p>
+          (a) \(A=\pi(d/2)^2 = \pi(0.5\times10^&#123;-3&#125;)^2 \approx 7.85\times10^&#123;-7&#125;\) m². Then
+          \(R=\rho L/A = (1.7\times10^&#123;-8&#125;)(10)/(7.85\times10^&#123;-7&#125;) \approx 0.216\,\Omega\).<br/>
+          (b) \(I=V/R = 1.50/0.216 \approx 6.93\) A.<br/>
+          (c) \(v_d = I/(n\,e\,A) = 6.93/((8.34\times10^&#123;28&#125;)(1.6\times10^&#123;-19&#125;)(7.85\times10^&#123;-7&#125;))
+          \approx 6.6\times10^&#123;-4&#125;\) m/s, i.e. 0.66 mm/s.<br/>
+          (d) \(t = L/v_d = 10/(6.6\times10^&#123;-4&#125;) \approx 1.5\times10^4\) s ≈ 4.2 hours. But the bulb
+          glows essentially the instant the switch closes: the <i>field</i> in the wire propagates
+          at \(\sim c\), pushing on every conduction electron everywhere along the wire almost
+          simultaneously. Signal speed and individual drift speed are completely different physics
+          — exactly the §9.2 Tip in concrete numbers.
+        </p>
+      </Reveal>
+
+      <Connection>
+        M13–M14 close the loop: the capacitor of Ch. 8 stops being a static charge store the moment
+        you let it discharge through a wire, and at that moment the Ch. 9 machinery (\(I=dQ/dt\),
+        \(V=IR\), \(I=nqAv_d\)) takes over. The exam-2 prep is exactly this transition.
+      </Connection>
     </section>
   );
 }

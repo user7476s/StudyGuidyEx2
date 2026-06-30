@@ -109,6 +109,47 @@ export const examTraps: ExamTrapEntry[] = [
       'disconnect, not Q₀.',
   },
   {
+    id: 's91-integrate-i-of-t',
+    section: '9.1',
+    sectionAnchor: '/study-guide/current/#s91',
+    topic: 'integrate I(t) for total Q',
+    bodyHtml:
+      'When the current varies in time (\\(I = I_0 e^{-t/\\tau}\\) for an RC discharge, a defibrillator pulse, etc.), ' +
+      'the total charge between \\(t_1\\) and \\(t_2\\) is \\(Q = \\int_{t_1}^{t_2} I\\,dt\\), <i>not</i> ' +
+      '\\(I\\cdot\\Delta t\\). Whenever the prompt says &ldquo;total charge,&rdquo; check whether \\(I\\) is constant ' +
+      'before reaching for \\(Q = I\\,t\\).',
+  },
+  {
+    id: 's92-units-of-n',
+    section: '9.2',
+    sectionAnchor: '/study-guide/current/#s92',
+    topic: 'mixing cm and m in nqAv_d',
+    bodyHtml:
+      'A frequent slip in \\(I = n\\,q\\,A\\,v_d\\) is writing \\(n\\) in cm⁻³ (chemist&apos;s habit) while \\(v_d\\) ' +
+      'is in m/s and \\(A\\) in m². That mismatch is off by a factor of \\(10^6\\). Keep all lengths in SI before ' +
+      'multiplying.',
+  },
+  {
+    id: 's93-delta-t-units',
+    section: '9.3',
+    sectionAnchor: '/study-guide/current/#s93',
+    topic: 'ΔT same in °C and K',
+    bodyHtml:
+      'Because \\(T_K = T_{°C} + 273.15\\), <i>differences</i> \\(\\Delta T\\) are numerically identical in °C and K. ' +
+      'The temperature-coefficient formula \\(R(T) = R_0[1 + \\alpha\\,\\Delta T]\\) uses \\(\\Delta T\\), so no ' +
+      'conversion is ever needed — but mixing systems between \\(T\\) and \\(T_0\\) is the slip that catches people.',
+  },
+  {
+    id: 's94-ohmic-vs-nonohmic',
+    section: '9.4',
+    sectionAnchor: '/study-guide/current/#s94',
+    topic: 'ohmic vs. non-ohmic',
+    bodyHtml:
+      'A diode is the canonical non-ohmic device: above the threshold voltage the current rises <i>exponentially</i> ' +
+      'with V, so trying to apply \\(V = IR\\) with a single \\(R\\) gives nonsense. Scan the prompt for the word ' +
+      '&ldquo;ohmic&rdquo; or &ldquo;resistor&rdquo; — those signal that \\(V = IR\\) with a constant \\(R\\) is safe.',
+  },
+  {
     id: 's85-energy-density-dielectric',
     section: '8.5',
     sectionAnchor: '/study-guide/capacitance/#s85',
